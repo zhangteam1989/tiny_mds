@@ -4,24 +4,9 @@
 
 class ResultCode(object):
     def __init__(self, code, info):
-        self._code = code
-        self._info = info
+        self.code = code
+        self.info = info
 
-    @property
-    def code(self):
-        return self._code
-
-    @code.setter
-    def code(self, code):
-        self._code = code
-
-    @property
-    def info(self):
-        return self._info
-
-    @info.setter
-    def info(self, info):
-        self._info = info
 
 class Code(object):
     """
@@ -45,9 +30,9 @@ class Code(object):
 class WebResult(object):
 
     def __init__(self, status=0, data=None, msg=''):
-        self._status = status
-        self._data = data
-        self._msg = msg
+        self.status = status
+        self.data = data
+        self.msg = msg
 
     @classmethod
     def fail_response(cls, code):
@@ -65,26 +50,3 @@ class WebResult(object):
         """
         return cls(0, data, '')
 
-    @property
-    def status(self):
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        self._status = status
-
-    @property
-    def data(self):
-        return self._data
-
-    @data.setter
-    def data(self, data):
-        self._data = data
-
-    @property
-    def msg(self):
-        return self._msg
-
-    @msg.setter
-    def msg(self, msg):
-        self._msg = msg
