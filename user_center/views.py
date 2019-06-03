@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 @require_POST
-def login1(request):
+def mds_login(request):
     username = request.POST.get('username','rooter')
     password = request.POST.get('password','root123456')
     # Django提供的authenticate函数，验证用户名和密码是否在数据库中匹配
