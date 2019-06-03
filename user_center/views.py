@@ -10,18 +10,19 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 @require_POST
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
+def login1(request):
+    username = request.POST.get('username','rooter')
+    password = request.POST.get('password','root123456')
     # Django提供的authenticate函数，验证用户名和密码是否在数据库中匹配
     user = authenticate(username=username, password=password)
     if user is not None:
         # Django提供的login函数，将当前登录用户信息保存到会话key中
         login(request, user)
-        return JsonResponse(WebResult.success_response(user).__dict__)
+        print(user.username)
+        return JsonResponse(WebResult.success_response(username=user.username))
     else:
         # 返回用户名和密码错误信息
-        return JsonResponse(WebResult.fail_response(Code.LOGIN_USERNAME_OR_PASSWORD_ERROR).__dict__)
+        return JsonResponse(WebResult.fail_response(Code.LOGIN_USERNAME_OR_PASSWORD_ERROR))
 
 
 @require_POST

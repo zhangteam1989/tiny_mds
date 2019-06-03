@@ -29,24 +29,24 @@ class Code(object):
 
 class WebResult(object):
 
-    def __init__(self, status=0, data=None, msg=''):
+    def __init__(self, status=0, msg=None, **data):
         self.status = status
         self.data = data
         self.msg = msg
 
     @classmethod
-    def fail_response(cls, code):
+    def fail_response(cls, result_code, **data):
         """
         创建一个WebResult
-        :type code: ResultCode
+        :type result_code: ResultCode
         """
-        return cls(code.code, None, code.info)
+        return cls(result_code.code, result_code.info, **data).__dict__
 
     @classmethod
-    def success_response(cls, data=None):
+    def success_response(cls, **data):
         """
         创建一个WebResult
         :type data: 响应数据
         """
-        return cls(0, data, '')
+        return cls(0, None, **data).__dict__
 
