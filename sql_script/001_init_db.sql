@@ -1,22 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50724
- Source Host           : localhost:3306
- Source Schema         : tiny_mds
-
- Target Server Type    : MySQL
- Target Server Version : 50724
- File Encoding         : 65001
-
- Date: 02/06/2019 20:14:56
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
 -- ----------------------------
 -- Table structure for auth_group
 -- ----------------------------
@@ -383,5 +364,3 @@ CREATE TABLE `t_repair_order_status_log`  (
   INDEX `order_no`(`order_no`) USING BTREE,
   CONSTRAINT `t_repair_order_status_log_ibfk_1` FOREIGN KEY (`order_no`) REFERENCES `t_repair_order` (`order_no`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;
