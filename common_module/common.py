@@ -13,6 +13,7 @@ class Code(object):
     10000-10999 定义user_center的错误
     """
     LOGIN_USERNAME_OR_PASSWORD_ERROR = ResultCode(10000, '用户名或密码错误')
+    LOGIN_USER_NOT_ACTIVE = ResultCode(10001, '用户未激活')
 
     """
     20000-20999 定义basis data相关错误编码

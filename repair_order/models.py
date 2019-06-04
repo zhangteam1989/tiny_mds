@@ -11,9 +11,6 @@ from django.db import models
 
 
 class TRepairOrder(models.Model):
-    """
-    维修订单表
-    """
     order_no = models.CharField(primary_key=True, max_length=32)
     receipt_status = models.IntegerField()
     ship_status = models.IntegerField()
@@ -34,9 +31,6 @@ class TRepairOrder(models.Model):
 
 
 class TRepairOrderCost(models.Model):
-    """
-    订单费用
-    """
     id = models.CharField(primary_key=True, max_length=32)
     order_no = models.CharField(max_length=32)
     cost_type = models.IntegerField()
@@ -48,11 +42,6 @@ class TRepairOrderCost(models.Model):
 
 
 class TRepairOrderLogistics(models.Model):
-    """
-    订单物流信息
-    @:param picking_time: 取件时间
-    @:param delivery_time: 交付时间
-    """
     id = models.CharField(primary_key=True, max_length=32)
     type = models.CharField(max_length=16)
     tracking_no = models.CharField(max_length=32)
@@ -68,9 +57,6 @@ class TRepairOrderLogistics(models.Model):
 
 
 class TRepairOrderStatusLog(models.Model):
-    """
-    订单状态日志
-    """
     id = models.CharField(primary_key=True, max_length=32)
     status = models.IntegerField()
     create_time = models.DateTimeField()
@@ -79,3 +65,18 @@ class TRepairOrderStatusLog(models.Model):
     class Meta:
         managed = False
         db_table = 't_repair_order_status_log'
+
+
+class TRepairOrderSequence(models.Model):
+    id = models.AutoField(primary_key=True,auto_created=True)
+
+    class Meta:
+        managed = False
+        db_table = 't_repair_order_sequence'
+
+    @classmethod
+    def acquire_sequence(cls):
+        ros = TRepairOrderSequence.objects.create()
+        id_str = str(ros.id)[:5]
+        return '00000'[:5-len(id_str)] + id_str
+
