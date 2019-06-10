@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET
 from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
@@ -20,7 +22,7 @@ def query_inventory_page(request):
     print('sadfasfas')
 
 
-@require_GET
+@login_required()
 def query_one_inventory_imei(request):
     """
     根据material_no和masc_code加载库存明细
